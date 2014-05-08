@@ -1,0 +1,1015 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+
+\setlength\topmargin{0in}
+\setlength\headheight{-.5in}
+\setlength\headsep{0in}
+\setlength\textheight{10in}
+\setlength\textwidth{7.3in}
+\setlength\oddsidemargin{-.5in}
+\setlength\evensidemargin{-.5in}
+\setlength\footskip{0in}
+
+\title{Notes}
+\begin{document}
+\maketitle
+
+\section*{9/26}
+	\subsection*{Continuous Functions}
+	\underline{Definition}: A set on which a function, $f$, is defined is called the domain of $f$ and is denoted $dom(f)$.\\
+	$x \in dom(f) \subset \mathbb{R}$ real-valued functions\\
+	$x \to f(x) \in \mathbb{R}$ natural domain\\\\
+	Ex) $f(s) = \sqrt{4 - x^2}$ for $x \in (-2, 2)$. (-2,2) is the largest set for the domain of this function\\\\
+	Ex) $g(x) = sin(\frac{1}{x})$. Its domain is $dom(g) = \mathbb{R} - \{0\}$\\\\
+	Consider a function $f$ and $x_0 \in dom(f)$. By informal definition of Continuous Function, If $f$ is continuous and $x \in dom(f)$ is very close to $x_0$, then $f(x)$ is very close to $f(x_0)$.\\
+	\underline{Definition}: Let $f$ be a real-valued function and $x_0 \in dom(f)$. We say that $f$ is \emph{continuous} at $x_0$ if for every sequence, ${x_n}_{n \ge 1}$ of points in $dom(f)$ converging to $x_0$, we have $\lim_{n \to \infty}{f(x_n)} = f(x_0)$.\\
+	What does it mean to be very close? It means that I have these really small numbers, $\epsilon$ and $\delta$ , such that $|f(x) - f(x_0)| < \epsilon$ and $|x - x_0| < \delta$.\\\\
+	\underline{Theorem}: Let $f$ be a real-valued function whose domain is a
+	subset of the $\mathbb{R}$. The function $f$ is continuous at $x_0 \in dom(f)$ iff if the following holds:\\
+	\begin{eqnarray}
+		(\forall \epsilon > 0)(\exists \delta(\epsilon) > 0) \text{ such that if } |x - x_0| < \epsilon \text{ and } x \in dom(f) \text{, we have } |f(x) - f(x_0)| < \epsilon.
+	\end{eqnarray}
+	\underline{Proof}: Suppose that the theorem holds, prove that $f$ is continuous at $x_0 \in dom(f)$.
+
+	We need to show that for every sequence $\{x_0\}_{n \ge 1} \subset dom(f)$ such that $x_n \to x_0$ as $n \to \infty$, we have $\lim_{f(x_n) = f(x_0)}$.
+
+	Definition of Limit: $(\forall \epsilon > 0)(\exists N(\epsilon)$ such that
+	$\forall n \ge N$ we have $|f(x_0) - f(x) < \epsilon$
+
+	From (1), there exists $\delta(\epsilon) > 0)$ such that if $|x_n - x_0| < \delta$, then $|f(x_n) - f(x_0)| < \epsilon$. $(\exists N)$ such that for $n \ge N$ ...
+
+	We know that $f$ is continuous at $x_0 \in dom(f)$. This has proven that $\lim_{n \to \infty}{x_n} = x_0 \implies \lim_{n \to \infty}{f(x_n)} = f(x_0)$.Let's prove the converse. 
+	
+	We'll do a proof by contradiction. Let's assume that equation (1) is false,
+	which is basically $(\exists \epsilon > 0)(\forall \delta > 0)$ there is $x \in dom(f)$
+	satisfying $| x - x_0 | < \delta $ and $|f(x) - f(x_0)| \ge \epsilon$. 
+
+	For $\delta_n = \frac{1}{n}$ where $n = \{ 1, 2, 3, . . . \}$.
+	Choose $|x_n - x_0| < \delta_n = \frac{1}{n}$ and $f(x_n) - f(x_0)| \ge \epsilon$. We know that $\lim_{n \to \infty}{x_n} = x_0$. CONTRADICTION!!!!
+
+\subsection*{Problem}
+	$f: [0, 1] \to \mathbb{R}$\\
+	$f(x) = \begin{cases} 0 & \text{ if x is irrational}\\
+	\frac{1}{n} & \text{ if $x = \frac{m}{n}$ where m and n are integers}\end{cases}$\\
+
+	Prove that $f$ is not continuous at rational points.
+
+\section*{9/29}
+	\subsection*{Example}
+		$f(x) = \begin{cases} sin(\frac{1}{x}) & \text{ if } x \not= 0 \\
+						0 & \text{ if } x = 0 \end{cases}$\\
+		Claim: f is not continuous at $x = 0$. The opposite means that $x_n \to 
+		0 \implies f(x_n) \to f(0)$. For $x_n = \frac{1}{\pi n}$
+
+		For ${x'_n} = \frac{1}{2\pi n + \frac{\pi}{2}}$\\
+		$x'_n \to 0$ as $n \to \infty$. 
+
+	  $f(x'_n) = \sin(\frac{1}{x_n}) = \sin(2\pi n + \frac{\pi}{2}) = \sin(\frac{\pi}{2}) = 1$
+
+		$f(x) = \begin{cases} x\sin(\frac{1}{x}) & \text{ if } x \not= 0\\
+						0 & \text{ if } x = 0\end{cases}$\\
+		Claim: f is continuous at x = 0. \\
+		Well... $|f(x)| = |x||sin\frac{1}{x}| 
+		\le |x|$. We also know that $|f(x)| \le |x| \Leftrightarrow -x \le f(x) 
+		\le x$, so it's sandwiched between those two functions. By the
+		sandwich theorem, since $\lim_{n \to 0}{-x} = 0$ and $\lim_{n \to 0}{x} 
+		= 0$, then we get that $\lim_{n \to 0}{|x||sin\frac{1}{x}|} = 0$. Since
+		at 0, we have that $f(x)$ is 0 at 0, it's continuous.\\
+
+		$f(x) = 2008x^3 + 7$ with $x_0 \in \mathbb{R}$ \\
+		$x_n \to x_0$ as $n \to \infty \implies f(x_n) \to f(x_0)$ ? \\
+		$\lim_{n \to infty}{f(x_n)} = 2008(\lim_{n \to \infty}{x_n})^3 + 7 = 
+		f(x)$ \\
+		
+		Proof of 
+		$(\forall \epsilon > 0)(\exists \delta(\epsilon) > 0)(|x - x_0| < \delta
+		$ and $ x \in dom(f) \implies |f(x) - f(x_0) < \epsilon$:\\
+		\begin{eqnarray*}
+			|2008x^3 + 7 - 2008 x_0^3 - 7| &<& \epsilon\\
+			2008|x^3 - x_0^3| &<& \epsilon\\
+			2008|x - x_0||x^2 + xx_0 + x_0^2| &<& \epsilon\\
+		\end{eqnarray*}
+		For now, let's ignore the $x^2 + xx_0 + x_0^2$ term.\\
+		We know(?)$x - x_0 < 1 \implies |x| \le |x_0| + 1$.\\
+		$|x^2 + xx_0 + x_0^2| \le |x|^2 + (|x||x_0|) + |x_0|^2 \le 
+		(|x_0| + 1)^2 + (|x_0| + 1)|x_0| + |x_0|^2 $. 
+
+		$|x - x_0| < \frac{\epsilon}{2008(|x_0| + 1)^2 + (|x_0|+1)|x_0| + x_0^2}$\\
+		$|f(x) - f(x_0)| = 2008|x - x_0||x^2 + xx_0 + x_0^2| \le \epsilon$\\
+
+		\underline{Theorem}: Let f(x) be a real-valued function continouous at $x_0$. Let $c$ be an arbitrary constant. Then, $g(x) = |f(x)|$ and $h(x)= cf(x)$ are also continuous at $x_0$.\\
+		\underline{Proof}: $c = 0$ is trivial since $h(x) = 0$.
+		Therefore we can assume that $c \not= 0$\\
+		Let $x_0 \in dom(f)$. For every $\epsilon > 0$, there exists a $\delta$
+		such that $|x = x_0| < \delta \implies |h(x) - h(x_0) < \epsilon$.
+		\begin{eqnarray*}
+			|h(x) - h(x_0)| &= & |cf(x) - cf(x_0)| \\
+			& = & |c| |f(x) - f(x_0)| \\
+			& < & \epsilon \text{ (We want this!)} 
+		\end{eqnarray*}
+		Even easier:
+		\begin{eqnarray*}
+			\lim_{n \to \infty}{h(x_n)} & = & \lim_{n \to \infty}{c f(x_n)} \\
+			& = & c\lim_{n \to \infty}{f(x)}\\
+			& = & c(f(x_0))
+		\end{eqnarray*}
+		Part 2:
+		\begin{eqnarray*}
+			|g(x) - g(x_0)| &=& ||f(x)| - |f(x_0||\\
+			& \le & |f(x) - f(x_0)| 
+		\end{eqnarray*}
+		I claim that $-|z - w| \le |z| - |w| \le |z - w|$. This is triangle
+		inequality. 
+\section*{10/1}
+	Let $f,g$ be continuous functions. Then, $f(x) /pm g(x)$, $f(x)g(x)$, and
+	$\frac{f(x)}{g(x)}$ are continuous.\\
+	\underline{Theorem}: Let $f$ and $g$ be real-valued functions that are
+	continuous at $x_0 \in \mathbb{R}$. Then,
+	\begin{enumerate}
+		\item $f(x) + g(x)$ is continuous at $x_0$
+		\item $f(x)g(x)$ is continuous at $x_0$.
+		\item $\frac{f(x)}{g(x)}$ continuous at $x_0$ if $g(x_0) \not= 0$.
+	\end{enumerate}
+	$x_n \in dom(f+g) = dom(f) \cap dom(g)$\\
+	$dom(\frac{f}{g}) = dom(f) \cap \{ x \in dom(g) | g(x) \not= 0\}$\\
+	\underline{Proof}:
+		\underline{sum/difference identity}:
+		We need $f(x_n) + g(x_n) \to_{n \to \infty} f(x_0) + g(x_0)$\\
+		We know $f(x_n) \to f(x_0)$ and $g(x_n) \to g(x_0)$ as $x \to \infty$\\
+		$\lim_{n \to \infty}{(f(x_n) + g(x_n))} = \lim_{n \to \infty}{f(x_n)} +
+		\lim_{n \to \infty}{g(x_n)} = f(x_0) + g(x_0)$\\
+		\underline{product identity}:
+			We need $f(x_n)g(x_n) \to_{n \to \infty} f(x_0)g(x_0)$\\
+			\begin{eqnarray*}
+				\lim_{n \to \infty}{f(x_n)g(x_n)} 
+				& = & \lim_{n \to \infty}{f(x)}\lim_{n \to \infty}{g(x)}\\
+				& = & f(x_0)g(x_0)
+			\end{eqnarray*}
+		\underline{quotient identity}:
+			Same idea as the previous two.\\\\
+		Why is this important? Well... now we know that all polynomial is 
+		continuous using induction.\\
+		Examples of Continuous from these identities
+		Ex) $p(x) = a_nx^n + \ldots + a_1x + a_0$\\
+		Ex) $f(x) = \frac{p(x)}{q(x)}$ where $p$ and $q$ are polynomials.
+			It is continuous if $q(x_0) \not= 0$.\\\\
+
+		Prove that $f(x) = \sin(x)$ is continuous.\\ 
+		We need to show that $(\forall x_n \to_{n \to \infty} 0)(\sin(x_n) \to 0)$\\
+		We know that $|\sin(x)| \le |x|$.
+		We know that as $n \to 0$, $|x_n| \to 0$.
+		Since $|\sin(x)| \le |x|$ and $|x_n| \to 0$, $|\sin(x)| \to 0$ as $n \to
+		0$. Therefore, $\sin(x)$ is continuous at $x = 0$.\\\\
+%
+		Prove that $f(x) = \cos(x)$ is continuous at 0.\\
+		We need to show that $(\forall x_n \to_{n \to \infty} 0)(1 - \cos(x_n) \to 0)$\\
+		We know that $|1 - \cos(x)| \le |x|$.
+		We know that as $n \to 0$, $|x_n| \to 0$.
+		Since $|1 - \cos(x)| \le |x|$ and $|x_n| \to 0$, $|1 - \cos(x)| \to 0$ 
+		as $n \to	0$. Then, $\lim_{n \to 0}{1 - \cos(x)} = 0$, so
+		$\lim_{n \to 0}{\cos(x)} = 1$.\\
+		Therefore, $\cos(x)$ is continuous at $x = 0$.\\\\
+%
+		Let $x_n \to x_0$ as $n \to \infty$. \\
+		We need $\sin(x_n) \to \sin(x_0)$. \\
+		\begin{eqnarray*}
+			\sin(x_n) &=& \sin(x_0 + (x_n - x_0)) \\
+			& = & \sin(x_0)\cos(x_n - x_0) + \cos(x_0)\sin(x_n - x_0) \\
+		\end{eqnarray*}
+		As $n \to \infty$, we get $\sin(x_0)(1) + \cos(x_0) * 0$, which is
+		$\sin(x_0)$\\
+
+		\subsection*{Corollary}
+			$\tan(x) = \frac{\sin(x)}{\cos(x)}$ is continuous when $\cos(x) \not=
+			0$.
+		\subsection*{Theorem}
+			If $f(x)$ is continuous at $x_0$ and $g(x)$ is continuous at $f(x_0)$,
+			then $g \circ f(x) = g(f(x))$ is continuous at $x_0$.\\
+			\underline{Proof}:
+				$x_n \to x_0$ as $n \to \infty$.\\
+				$x_n \in dom(g \circ f) = \{ x | x \in dom(f) \text{ and } f(x) \in dom(g) \}$\\
+				Since f is continuous at $x_0$, we have $f(x_n) \to f(x_0)$ as $n \to
+				\infty$.\\
+				$g(x_n) = g(f(x_n)) \to_{n \to \infty} g(f(x_0))$. Since $g(x)$ is
+				continuous at $f(x)$.\\\\
+
+		This is continuous. Why?
+		$max(f(x), g(x)) = \frac{f(x) + g(x)}{2} + \frac{|g(x) - f(x)|}{2}$\\
+
+\section*{10/2}
+	\underline{Continuous functions}:\\
+		\em{Seqeunce version}: $f$ is not continuous at $x_0$ if $\forall x_n$,
+		as $x_n \to x_0$, $f(x_n) \to f(x_0)$\\
+		\em{$\epsilon$ $\delta$ version}: $(\forall \epsilon > 0)(\exists \delta
+		> 0)(\forall x)$ satisfying $|x - x_0| < \delta \implies |f(x) - f(x_0)|
+		< \epsilon$.\\\\
+	Ex) Let $a_n = 1 - \frac{1}{n}$. Now, $a_n \to 1$ as $n \to \infty$. But 
+	$f(a_n) = 0 \forall n \ge 1$ as $f(a_n) \to 0 \not= 1$.\\\\
+	Ex) Let $f: [0, 1] \to [0, 1]$.\\
+			$f(x) = \begin{cases} 0 & x \text{ is irrational} \\ \frac{1}{q} & \text{ otherwise}\end{cases}$\\
+			$x_0 \in [0, 1] \ \mathbb{Q}$. 
+
+\section*{10/3}
+	\underline{Theorem}: Let f be a continuous real-valued function on a closed interval $[a, b]$. Then f is bounded on $[a,b]$.\\
+	\underline{Proof}: Let us assume that f is not bounded. $\{ x_n\}$, $f(x_n) \ge n$, $n = 1, 2, 3, \ldots$, $a \le x_n \le b$, i.e. $\{x_n\}$ is a bounded sequence. By Bolzano-Weierstrass theorem, we have $x_{n_k}, \to_{k \to \infty} x_0$ (i.e. $\{ x_0 \}$ has a converging subsequence) $\implies f(x_{n_k}) \to_{k \to \infty} f(x_0)$ since $f$ is continouous. Then, $f(x_{n_k}) > n_k \to \infty$. This is a contradiction. \\\\
+	$\infty > M = \sup f(x)$, smallest possible upper bound where $x \in [a,b]$.\\
+	We want to prove that $\exists x \in [a,b]$ such that $f(x_0) = M = \sup_{x \in [a,b]} f(x)$. In other words, $\sup_{x \in [a,b]} f(x) = \max_{x \in [a,b]} f(x)$.\\
+	Proof by contradiction: Suppose this is not true, i.e. $\forall x \in [a,b]$ $f(x) < M \implies g(x) \frac{1}{M - f(x)}$, which is continuous on $[a,b]$\\
+	$f(x)$ is bounded on $[a,b]$ by the first part of the proof. Let $D \ge g(x) > 0$. Then, $D \ge \frac{1}{M - f(x)} \implies f(x) \le M - \frac{1}{D}$.\\
+	$M = \sup_{x \in [a,b]}f(x)$.
+	$M - \frac{1}{n} \le f(x_n) \le M \implies \exists$ converging subsequence.\\
+	$x_{n_k} \to_{k \to \infty} x_0$.\\
+	$M \frac{1}{n_k} \le f(x_k) \le M$\\
+	$f(x_{n_k} \to_{k \to \infty} f(x_0)$\\
+	$M - 0 \le f(x_0) \le M$.\\
+	Therefore, $f(x_0) = M$.\\
+	\\
+	\underline{Theorem}: (Intermediate Value Theorem) Let $f$ be continuous on
+	$[a,b]$. Then, for any value, $d$, between $f(a)$ and $f(b)$. There exists
+	$x_0 \in [a,b]$ such that $f(x_0) = d$.\\
+	If $d = f(a)$ or $d = f(b)$, then we're done. 
+
+\section*{10/6}
+	Figure 2\\
+	\underline{proof}: Without loss of generality, we can assume that $f(a) < 
+	f(b)$ Let $S = \{ x \in [a, b] | f(x) < y \}$. Also, let $x_0 = \sup S$
+	(It's well-defined because $\mathbb{R}$ is complete). So, there exists a
+	sequence $\{S_n\} \subseteq S, S_n \to x_0$ as $ n \to \infty$ where
+	$x_0 \in [ a, b]$. However, $f$ is continuous, $f(S_n) \to f(x_0)$.
+	Hence, $f(x_0) \le y$. We know that $x_0 \not= b$. Otherwise, $f(x_0) =
+	f(b) \le y < f(b)$. A contradiction. Let $t_n = x_0 + \frac{1}{n}$ Then,
+	as $t_n \to x_0$, $f(t_n) \ge y$. Hence $f(x_0) \ge y$. Therefore, $f(x_0)
+	= y$.\\\\
+	\underline{Example} Let $f: [0, 1] \to [0, 1]$ be continuous. Then, $f$ 
+	has a fix point ($f(x) = x$)\\
+	Figure 3.\\
+	Let $g(x) = f(x) - x$ where $g$ is continuous and $g(x) \ge 0$. $g(1) \le 
+	0$. Suppose $g(0) > 0$ and $g(1) < 0$.\\
+	By the Intermediate Value Theorem, there exists $0 < x < 1$, $g(x) = 0$,
+	but for this $x$, $f(x) = x$.\\\\
+	\underline{Corollary} Let $I$ be an interval, $f: I \to \mathbb{R}$. 
+	Suppose $f$ is continuous. Then, $f(I) = \{ f(x), x \in I \}$ is an 
+	interval or a single point.\\
+	\underline{Proof}: Suppose $f(I) = J$ is not a single point. Then,
+	$\inf(J) < \sup(J)$. Take $y \in \mathbb{R}$ such that $\inf J < y < 
+	\sup J$. Then, there exists $y_0, y_1 \in J$ such that $y_0 < y < y_1$.\\
+	Let $x_0, x_1 \in I$ be such that $f(x_0) = y_0, f(x_1) = y_1.$ By the
+	intermediate value theorem, there exists $x$ between $x_0$ and $x_1$ such
+	that $f(x) = y$ where $y \in J$.\\\\
+	\underline{Theorem}: Let $I$ be an interval, $f: I \to \mathbb{R}$. Suppose
+	$f$ is continuous and strictly increasing on $I$.\\
+	Then,
+	\begin{enumerate}
+		\item $f^{-1}$ is well-defined function on $J = f(I)$ and strictly 
+		increasing. 
+		\item $f^{-1}$ is continuous. This statement comes from the following 
+		theorem.
+	\end{enumerate}
+	\underline{Theorem}: Let $J$ be an interval in $\mathbb{R}$ and $g : J \to
+	\mathbb{R}$. Suppose $g$ is strictly increasing such that $g(J)$ is an
+	interval on $J$. Then, $g$ is continuous on $J$.\\
+
+\section*{10/8}
+	\underline{Proof}: Take $x_0 \in J$, which is not an endpoint. Then, 
+	$g(x_0)$ is not an endpoint either. Take $\epsilon_0 > 0.$. Then, $g(x_0) 
+	- \epsilon g(x_0) + \epsilon) \subseteq g(J)$.
+	For any $\epsilon$ such that $0 < \epsilon < \epsilon_0$, $g(x_0) + 
+	\epsilon \in g(J)$. So, there are some powers $x_1, x_2 \in J$ such that
+	$g(x_1) = g(x_0) - \epsilon$ and $g(x_2) = g(x_0) + \epsilon$. \\
+	Let $\delta = \min\{x_0 - x_1, x_2 - x_0\}$.\\
+	Then, $x_0 - \delta < x < x_0 + \delta \Rightarrow g(x_0) - \epsilon < 
+	g(x) <g(x_0) + \epsilon$.\\
+	In other words, for any $\epsilon > 0$, $\epsilon < \epsilon_0$. There 
+	exists $\delta > 0$ such that $|x - x_0| < \delta \Rightarrow |g(x) -
+	g(x_0)| < \epsilon$. \\\\
+	Then, by Theorem 17.2, when $x_0$ is a an endpoint, 
+	we can prove that in a similar way.\\
+	$\forall x_0 \forall \epsilon > 0 \exists \delta > 0 \forall x \in S$ with
+	$|x_0 - x| < \delta$, $|f(x_0) - f(x)| < \epsilon$.\\\\\\
+	\underline{Theorem 18.6}:
+		Suppose $I$ is an interval and that $f: I \rightarrow \mathbb{R}$, which
+		is continuous and one to one. Then, $f$ is strictly increasing or 
+		decreasing.\\
+	\underline{Proof}: Take two points $a, b \in I$. Without loss of generality
+		let $f(a) < f(b)$. Take any two points, $x_1, x_2$ such that $a < x_1 <
+		x_2 < b$. Suppose for contradiction that $f(x_1) > f(b) > f(a)$. By
+		the Intermediate Value Theorem, then there exists $c$ such that
+		$c \in [a,b]$ and that $f(c) = f(b)$. This is a contradiction
+		because $f$ is supposed to be one to one. Hence, we know that $f(x_1) < 
+		f(b)$. Similarly, $f(a) < f(x_1)$. In a similar way, $f(x_1) < f(x_2) <
+		f(b)$. Hence, f is strictly increasing on $[a,b]$. If we take $[a',b']
+		\supset [a,b]$, f is strictly increasing. $\qed$.\\
+	\underline{Theorem}:
+		Suppose $ S \subseteq \mathbb{R}$ such that $f$ is uniformly continuous
+		on $S$. If $\forall \epsilon > 0$ $\exists \delta > 0$ $\forall x,y \in 
+		S$ such 
+		that $|x - y|< \delta$, then $|f(x) - f(y)| < \epsilon$.\\
+	original defintion:$f$ is continuous on S if $\forall x_0 \in S$ $\forall
+	\epsilon > 0$ $\exists \delta > 0$ $\forall x$ such that $|x - x_0| < 
+	\delta$. Then, $|f(x) - f(x_0)| < \epsilon$ \\\\\\
+	Ex) $f(x) = \frac{1}{x^2}$ on $(0, \infty)$. $f$ is uniformly continuous
+	on $(1, \infty)$, but not on $(0, \infty)$. For uniformly continuous,
+	$\delta$ depends on choice of $\epsilon$ and $x_0$.\\
+	\underline{Proof}: $f(x) - f(y) = \frac{(y-x)(y+x)}{x^2y^2}$.\\
+	Then, $\frac{y+x}{x^2y^2} = \frac{1}{x^2y} + \frac{1}{xy^2} \le 1 + 1 = 2$.
+	Then, $|y - x| < \frac{\epsilon}{2} = \delta \Rightarrow |f(x) - f(y)| <
+	\epsilon$
+
+\section*{10/10}
+	What is the negation of the definition of uniform continuity?\\
+	$(\exists \epsilon > 0)(\forall \delta > 0)(\exists x,y \in S with |x-y| <
+	\delta$ and $|f(x) - f(y)| \ge \epsilon$\\
+	\underline{Theorem 19.2}: $f:[a,b] \rightarrow \mathbb{R}$ and 
+	$f$ is continuous $\Rightarrow f$ is uniformly continuous on $[a,b]$\\
+	\underline{Proof}: Suppose for contradiction, $f$ is not uniformly 
+	continuous. $(\exists \epsilon > 0)(\forall \frac{1}{N})(\exists x_N,y_N 
+	\in [a,b])(|f(x_N) - f(y_N)| \ge \epsilon)$.\\
+	$\{ x_N \}_{N=1}^{\infty} \subseteq [a,b]$. \\
+	By the Bolzano-Weierstrass Theorem, there exists $\{ x_{n_k} \}_{k=1}^
+	{\infty} \subseteq \{x_N\}_{N=1}^{\infty}$ and $x_0 \in \mathbb{R}$.\\
+	$x_{N_k} \to x_0$ as $k \to \infty$. However, $[a,b]$ is closed, so 
+	$x_0 \in [a,b]$. $y_{N_k} \to x_0$ as $k \to \infty$. $\lim_{k \to \infty}
+	{f(x_{n_k})} = f(x_0) = \lim_{k \to \infty}{f(y_{N_k})}$ because $f$ is
+	continuous.\\
+	This is a contradiction because $\lim_{k \to \infty}{(f(x_{N_k}) - 
+	f(y_{N_k}))} = 0$ and $\lim_{k \to \infty}{(f(x_{N_k}) - 
+	f(y_{N_k}))} \ge \epsilon > 0$.
+	\underline{Theorem 19.4}: $f: S \to \mathbb{R}$ is uniformly continuous on
+	$S$. then, for a Cauchy sequence $\{ x_n \} \subseteq S$, $\{f(x_n)\}$ is
+	also a Cauchy Sequence. \\
+	\underline{Proof}: Since $f$ is uniformly continuous, $(\forall \epsilon
+	> 0)(\exists \epsilon' > 0)(\forall x,y \in S)(|x - y| < \epsilon')(
+	|f(x) - f(y)| < \epsilon$.\\
+	Since $\{ x_n \}$ is a Cauchy sequence for the above $\epsilon'$, there 
+	exists $N$,  with $m,n > N$, $|x_m - x_n| < \epsilon'$.\\
+	This means that $(\forall \epsilon > 0)(\exists N)(\forall m,n > N)(|f(x_m)
+	- f(x_n)| < \epsilon)$.\\
+	$f(x) = \frac{1}{x^2}$ is not uniformly continuous on $(0, \infty)$.\\
+	$\{ x_n = \frac{1}{n} \} \subseteq (0, \infty)$, a Cauchy sequence.\\
+	Suppose for a contradiction that $f$ is uniformy continuous $(0, \infty)$.\\
+	$\{ f(x_n) = n^2 \}$ is a Cauchy Sequence. A Contradiction!
+
+\section*{10/13}
+	\underline{Theorem}: A real-valued function $f$ on $(a,b)$ is uniformly
+	continuous on $(a,b)$ if and only if it can be extended to a continuous
+	function on $[a,b]$.\\
+	\underline{Example}: $g(x) = \frac{1 - \cos(x)}{x^2}$, $x \in (0, 2\pi)$
+	is uniformly continuous on $(0, 2\pi)$.\\
+	$g(0) = \frac{1}{2} = \lim_{x \to 0}{g(x)}$\\
+	\underline{Theorem}: Let $f$ be a continuous function on an interval $I$.
+	Let $I^o$ be $I$ without its endpoints. If $f$ is differentiable on $I^o$
+	and $f'(x)$ is bounded on $I^o$, then $f$ is uniformly continuous on $I$.\\
+	\underline{Example}: $f(x) = \frac{1}{x}$. Then, $f'(x) = \frac{-1}{x^2}$\\
+	$|f'(x)| = \frac{1}{x^2} \le 1$.\\
+	\underline{Mean Value Theorem}: Let a function $f$ be differentiable on 
+	$[a,b]$. Then, there exists a point, $c$, $f'(c) = \frac{f(b) - f(a)}
+	{b -a}$ \\
+		
+\section*{10/15}
+	a) $\lim_{x \to \frac{2}{\pi}}{\sin(\frac{1}{x})} = \sin(\frac{1}{\frac{2}{\pi}}) = \sin(\frac{\pi}{2}) = 1$\\
+	Remark: $f: S \to \mathbb{R}$ is continuous at $a \in S$ iff $\lim_{x \to
+	a^S} f(x) = f(a)$.\\
+	b) $\lim_{x \to +\infty}{x\sin(\frac{1}{x})} = 1$. Why? Let $y = \frac{1}{x}$. Then, it will $x\sin(\frac{1}{x}) = \frac{\sin(y)}{x}$ and we know as
+	$x \to \infty$, $y \to 0$, and function to $1$.
+	c) $\lim_{x \to 1}{\frac{x^{\frac{1}{2008}} - 1}{x - 1} = \lim_{x \to 1}
+	\frac{x^{\frac{1}{2008}} - 1}{(x^{\frac{2007}{2008}} + x^{\frac
+	{2006}{2008}}+ \ldots + x^{\frac{1}{2008}} + 1)(x^{\frac{1}{2008}} - 1)}}$\\
+	Let $x = y^2008$...
+	e) $\lim_{x \to 0^+}{x^{x^2}} = \lim_{x \to 0^+}{(e^{\ln x})^{x^2}} = \lim_
+	{x \to 0^+}{e^{x^2\log(x)}}$.\\
+	$\lim_{x \to 0^+}{x^2\log(x)} = \lim_{x \to 0^+}{\log x}{\frac{\log(X)}{
+	\frac{1}{x^2}}} = \lim_{x \to \infty}{\frac{\frac{1}{x}}{\frac{-2}{x^3}}}
+	= \lim_{x \to 0^+}{} ... $\\\\
+	\underline{Theorem} Let $f_1$ and $f_2$ be functions for which the limits
+	$\lim_{x \to a^S}{f_1(x) = L_1}$ and $\lim_{ x \to a^S}{f_2(x)}$ exists
+	and are finite. Then, $\lim_{x \to a^S}{(f_1(x) + f_2(x))} = L_1 + L_2$ and
+	$\lim_{x \to a^S}{f_1*f_2}(x) = L_1L_2$. \\
+	\underline{Theorem} Let $f$ be a function for which the limit, $L = 
+	\lim_{x \to a^s}{f(x)}$ exists and is finite. If $g$ is a function defined
+	on $\{f(x) | x \in S\} \cup {L}$ and is continuous at $L$, $\lim_{x \to
+	a^S}{g \dot f(x)} = g(L)$.
+
+\section*{10/17}
+	\underline{Theorem}: Let $f$ be a function for which the limit, 
+	$\lim_{x \to a} = L$ exists and is finite. Let the function $g$ be 
+	defined on $\{ x \in S\} \cup \{L\}$. IF $g(y)$ is continuous at $L$, then
+	$\lim_{x \to a^S}{g(f(x))} = g(L)$.\\\\
+	Ex) $\lim_{x \to 0}{f(x)} = 0$\\
+	$\lim_{y \to 0}{g(x)} = 200 \not= g(0)$.\\
+	Then, $\lim_{x \to 0}{g(f(x))}$ does not exist.\\\\
+	Let $\{ x_n\}_{n \ge 1}^{\infty}$ be an arbitrary sequence on $S$ such that
+	$x_n \to a$ as $n \to \infty \Rightarrow f(x_n) \to L$ as $n \to \infty$
+	and $g(f(x)) \to g(L)$ as $n \to \infty$ because $g$ is continuous at 
+	$L$.\\\\
+	\underline{Theorem}: Let $f$ be a function defined on some subset $S$ of
+	the real line $\mathbb{R}$. Let $a$ be a real number that is equal to the
+	limit of some subsequence on $S$. Then, $\lim_{x \to 0^+}{f(x)} = L 
+	\Leftrightarrow \forall \epsilon > 0 \exists \delta(\epsilon, a) > 0$ 
+	such that if $|x - a| < \delta$ and $x \in S$, then $|f(x) - L|< \epsilon$\\\\
+	Suppose that $\forall \epsilon > 0 \exists \delta(\epsilon, a) > 0$ 
+	such that if $|x - a| < \delta$ and $x \in S$, then $|f(x) - L|< \epsilon$
+	is true. We have to prove that $\forall\{x_0\}_{n \ge 1} \subset S$ such
+	that $\lim_{n \to \infty}{x_n} = a$, we have $\lim_{n \to \infty}{f(x)} 
+	= L$.\\
+	We have to show that $\forall \epsilon > 0 \exists N(\epsilon)$ such that
+	$\forall n \ge N$ $|f(x) - L| < \epsilon$.\\
+	Take $\delta(\epsilon, a)$ from our hypothesis. Then, $|x_n - a| < \delta
+	\Rightarrow |f(x_n) - L| < \epsilon$. Since $\lim_{n \to \infty} = a$,
+	we have that $\exists N(\delta(\epsilon, a)) = N(\epsilon)$ such that
+	if $n \ge N$, then $|x_n - a| < \delta$. \\\\
+	We have $\lim_{x \to a^S}{f(x)} = L$. We need to prove the previous
+	hypothesis. By contradiction, assume that the previous hypothesis
+	is not true. Then, $\exists \epsilon > 0$ $\forall \delta > 0$ $\exists x
+	\in S$ and $|x - a| < \delta$, but $|f(x)-L| > \epsilon$.\\
+	\underline{Example}:$\delta_n = \frac{1}{n}$. Then, $\exists x_n$ such
+	that $|x_n - a| < \delta = \frac{1}{n}$, but $f(x_n) - L | > \epsilon$.
+	$\lim_{n \to x_n}x_n = a.$ However, $\lim_{n \to \infty}f(x_n) \not=
+	L$. \\
+	\underline{theorem} $\lim_{x \to a}{f(x)}$ exists iff both $\lim_{x \to
+	a^+}$ and $\lim_{x \to a^+}f(x)$ exists and equal to each other. Then,
+	$\lim_{x \to a} f(x) = \lim_{x \to a^+} f(x) = \lim_{x \to a^-}f(x)$.
+
+\section*{10/20}
+	\underline{Theorem}: The power series converges for $|x| < R$ and diverges
+	for $|x| > R$.\\
+	The Root Test. $\sum_{n = 0}^{\infty}{a_nx^n}.$\\
+	$\limsup |a_nx^n|^{\frac{1}{n}} = \limsup |a_n|^{\frac{1}{x}}|x| = |x|
+	\limsup|a_n|^{\frac{1}{n}} = |x|\rho = \frac{|x|}{R}$\\
+	If $\frac{|x|}{R} < 1$, then the series converges.\\
+	If $\frac{|x|}{R} > 1$, then the series diverges.\\
+	\underline{Remark}: $\lim{n \to \infty}|\frac{a_{n+1}}{a_n}| = \rho
+	\Rightarrow |a_n|^{\frac{1}{n}} = \rho$\\
+	\underline{Examples}:\\
+	a) $\sum_{n = 0}^{\infty}{x^n} = \frac{1}{1-x}$. This converges on
+	$|x| < 1$  and diverge on $|x| \ge 1$.\\
+	b) $\sum_{n = 1}^{\infty}{\frac{1}{n} x^n}$. $\lim_{n \to \infty}
+	|\frac{a_{n+1}}{a_n}| = \lim_{n \to \infty}{\frac{n}{n + 1} = 1}$\\
+	The series converge for $|x| < 1$ and diverges for $|x| > 1$.\\
+	For $x = 1$, we get the harmonic series, which diverges.\\
+	c) $\sum_{n = 0}^{\infty}{(-1)^n n^2008 x^{n+1}} = \sum_{n = 1}^{\infty}
+	(-1)^{n - 1}(n - 1)^{2008}x^n$.\\
+	$\lim_{n \to \infty}{|\frac{a_{n+1}}{a_n}|} = \lim_{n \to \infty}{(\frac{n}
+	{n-1})^{2008}} = 1$.\\
+	Converges to $|x| < 1$ and diverges on $|x| \ge 1$.\\
+	d) $\sum_{n = 0}^{\infty}{\frac{1}{n!} x^n}$. 
+	$\lim{(\frac{1}{n!})^{\frac{1}{n}}} = \lim_{n \to \infty}(\frac{1}{n!})^
+	{\frac{1}{n}} = 0$.\\
+	$\lim_{n \to \infty}{|\frac{a_{n+1}}{a_n}|} = \lim_{n \to \infty}
+	{\frac{n!}{(n+1)!}} = \lim_{n \to \infty}{\frac{1}{n}} = 0$.\\
+	e) $\sum_{n=0}^{\infty}{(nx)^n} = \lim_{n = 0}^{\infty}{n^nx^n}$\\
+	Let $a_n = n^n$. \\
+	$\limsup|a_n|^{\frac{1}{n}} = \limsup(n^n)^{\frac{1}{n}} = \limsup(n^{n*
+	\frac{1}{n}}) = \limsup n = \infty$.\\
+	That means that $\rho = \infty$. Then, $R = \frac{1}{\rho} = 0$.\\\\
+	Let $f(x) = \sum_{n = 0}{a_n x^n} = \lim_{N \to 0}{\sum_{n = 0}{N}{a_nx^n}}$
+
+\section*{10/22}
+	\underline{(Theorem)???}: Let $f_n(x)$ converges to $f(x)$ for all $x \in
+	(a,b)$. Suppose $f_n(x)$ is continuous for all $n$. Then, $f(x)$ is 
+	continuous.\\
+	The above statement is wrong!\\ Consider $f_n(x) = \begin{cases} 
+	\text{(some line from 0 to 1) } & x \in [-\frac{1}{n},\frac{1}{n}]\\ 0 & 
+	x < \frac{-1}{n} \\ 1 & x > \frac{1}{n} \end{cases}$\\ Then, $f(x)$ is a 
+	step function with a vertical line.\\\\
+	\subsection*{Pointwise Convergence}
+		$f_n(x) \to f(x)$ as $n \to \infty$ $\forall x \in S$. $\forall \epsilon
+		> 0$ $\exists N(\epsilon, x)$ such that if $n > N$, then $|f_n(x) -
+		f(x)| < \epsilon$.
+	\subsection*{Uniform Convergence}
+		\underline{Definition}: Let $f_n$ be a sequence of real-valued 
+		functions defined on $S$. We say that $f_n(x)$ uniformly converges to
+		$f(x)$ on $S$ if $\forall \epsilon > 0$ $\exists N(\epsilon)$ such that
+		if $x \in S$ and $n \ge N$, then $|f_n(x) - f(x)| < \epsilon$.\\
+		\underline{Theorem}: The uniform limit of continuous functions is 
+		continuous. In other words, let $\{f_n(x)\}_{n \ge 1}$ be a sequence of 
+		functions continuous on $S$. Assume that $f_n(x)$ converge uniformly
+		to $f(x)$ on $S$. Let $S = dom(f)$. Then, $f(x)$ is continuous on $S$.\\
+		\underline{Proof}: Let $x_0 \in S$. We have to prove that $f(x)$ is
+		continuous at $x_0$. Then, we need to prove$\forall \epsilon > 0$ 
+		$\exists \delta(\epsilon)$ such that if $|x - x_0| < \epsilon$ and $x 
+		\in S \Rightarrow |f(x)- f(x_0)| < \epsilon$.\\
+		Let $\epsilon = \frac{\epsilon}{3} + \frac{\epsilon}{3} + 
+		\frac{\epsilon}{3}$.\\
+		Then, $\forall \frac{\epsilon}{3} > 0$ $\exists N(\frac{\epsilon}{3})$
+		such that if $x \in S$ and $ n \ge N$, then $|f_n(x) - f(x)| < 
+		\frac{\epsilon}{3}$.\\
+		Take $N$ to be the $N$ above. $f(x) - f(x_0) = (f(x) - f_n(x)) + (f_n(x) 
+		-	f_n(x_0)) + (f_n(x_0) - f(x_0))$.\\
+		We know that $|f(x) - f(x_0)| \le |f(x) - f_n(x)| + |f_n(x) -	f_n(x_0)| 
+		+ |f_n(x_0) - f(x_0)|$.\\
+		Choose $n = N(\frac{\epsilon}{3}) + 17$. Then, $|f(x) - f_n(x)| < 
+		\frac{\epsilon}{3}$ and $|f_n(x_0) - f(x)| < \frac{\epsilon}{3}$.
+		We know that f)
+
+\section*{10/24}
+	Ex) $g_n(x) = \frac{x^3}{1 + nx^2}$. $g_n(x) \to g(x) \equiv 0$, so
+	pointwise as $n \to \infty$\\
+	If $x = 0$, then $g_n(0) = 0 \Rightarrow 0 = g(0)$.\\
+	If $x \not 0$, $g_n(x) \to 0$, $\sup_{x \to \mathbb{R}}|g_n(x)| = \infty$.\\
+	$g_n(x) = \frac{x}{\frac{1}{x^2} + n} \rightarrow \frac{\infty}{n}$\\
+	Ex) $h_n(x) = (1 + \frac{x}{n})^n$\\
+	$h_n(x) \rightarrow_{n \to \infty} e^x$\\
+	$\lim_{n \to \infty}[\sup_{x \in \mathbb{R}} |h_n(x) - h(x)|] = 
+	\sup_{x \in \mathbb{R}}|(x + \frac{x}{n})^n - e^x| = \infty$\\
+	$e^x - (1 + \frac{x}{n})^n = e^x - (1 + \frac{x}{n})^n = e^x(1 - 
+	\frac{(1+\frac{x}{n})^n}{e^x})$.\\
+
+\section*{10/27}
+	Let $\{f_n\}_{n \ge 1}$ be a sequence of continuous functions on $[a,b]$.\\
+	$f_n \to f$ pointwise on $[a,b]$, then $f_n(x) = \begin{cases} 0 & \text{if
+	$\frac{1}{n} \le x \le 1$}\\ 4n^2(x) & \text{if } 0 \le x \frac{1}{2n} \\
+	4n - 4nx & \end{cases}$\\
+	1) $\forall x \in [0, 1]$ $f_n(x) \to f(x) \equiv 0$ as $n \to \infty$.\\
+	If $x = 0$ , then $f_n(0) = 0 \to f(0) = 0$ as $n \to \infty$.\\
+	$\frac{1}{n} < x \Leftrightarrow n > \frac{1}{x}$.\\
+	If $n > \frac{1}{x}$, then $f_n(x) = 0$.\\
+
+	\subsection*{More on Uniform Convergence}
+	\underline{Theorem}: Let $\{f_n\}_{n \ge 1}$ be a sequence of continuous
+	functions on $[a,b]$. Suppose that $f_n \to f$ uniformly on $[a,b]$. Then,
+	$\int_a^b f_n(x) dx \to \int_a^b f(x) dx$ as $ n \to \infty$.\\
+	$\forall \epsilon > 0$ $\exists N(\epsilon)$ such that $|f_n(x) - f(x)|
+	< \frac{\epsilon}{b - a}$ $\forall x \in [a,b]$ and $ \forall n \ge N$.\\
+	$f_n(x) - \frac{\epsilon}{b - a} < f(x) < f_n(x) + \frac{\epsilon}{b - a}$
+	$\Rightarrow \int_a^b(f_n(x) - \frac{\epsilon}{b - a})dx < \int_a^b f(x) dx
+	< \int_a^b(f_n(x) + \frac{\epsilon}{b - a}dx)$.\\
+	Then, we get $\int_a^b(f_n(x))dx - \epsilon < \int_a^b f(x) dx < 
+	\int_a^b(f_n(x))dx + \epsilon $.\\
+	Then, $\forall \epsilon$ $\exists N$ such that $|\int_a^b f_n(x)dx - 
+	\int_a^b f(x)dx| < \epsilon$ $\forall n \ge N$.\\
+	Then, $\lim_{n \to \infty}{\int_a^b f_n(x)dx} = \int_a^b f(x)dx$.\\\\
+%
+	Let's revisit Cauchy Sequences. The problem with current knowledge is
+	that you often have to know the limit in order to prove that it
+	converges, etc... Cauchy allows us to show convergence without knowing
+	the limits.\\
+	\underline{Definition}: A sequence $\{f_n(x)\}_{n \ge 1}$ on $S \subseteq
+	\mathbb{R}$ is \underline{uniformly Cauchy} if $(\forall \epsilon > 0$ 
+	$\exists N$ such that $|f_n(x) - f_m(x)| < \epsilon$ $\forall x \in S$ 
+	$\forall n,m \ge N$.\\
+	\underline{Theorem}: $\{f_n(x)\}_{n \ge 1}$ is uniformly Cauchy on $s$
+	iff $f_n(x) \to $ some function $f(x)$ uniformly on $S$.\\
+	$|f_n(x) - f(x)| < \frac{\epsilon}{2}$ $\forall n \ge N$.\\
+	$|f_m(x) - f(x)| < \frac{\epsilon}{2}$ $\forall m \ge N$\\
+	$|f_n(x) - f_m(x)| = |f_n(x) - f(x) - f_m(x) + f(x)| < \epsilon$.
+
+\section*{10/29}
+	\subsection*{Other direction of Cauchy sequence}
+		Assume that $\{f_n(x)\}$ is uniformly Cauchy. Let's fix $x_0$.\\
+		Then, $\{f_n(x_0)\}_{n \ge 1}$ is a Cauchy sequence. \\
+		This implies that there exists $\lim f_n(x_0) = f(x_0)$ \\
+		We know that $f_n(x) \to f(x)$ pointwise.\\
+		$(\forall \frac{\epsilon}{2})(\exists N)(|f_n(x) - f_m(x)| < 
+		\frac{\epsilon}{2})$ $(\forall n,m \ge N)(\forall x \in S)$.\\
+		Let's fix $x_0$. Then, $|f_n(x_0) - f_m(x_0)| < \frac{\epsilon}{2}$\\
+		Then, $f_m(x_0) - \frac{\epsilon}{2} <  f_n(x_0) < f_m(x_0) + 
+		\frac{\epsilon}{2}$\\
+		$\lim f_m(x_0) - \frac{\epsilon}{2} \le  f_n(x) \le \lim f_m(x_0) + 
+		\frac{\epsilon}{2}$\\
+		Then, $f(x_0) - \frac{\epsilon}{2} \le f_n(x_0) \le f(x_0) + 
+		\frac{\epsilon}{2}$\\
+		$|f_n(x) - f(x)| \le \epsilon < \epsilon$ $\forall n \ge N$.\\\\\\
+%
+	Ex) We have the equation $\sum_{n = 1}^{\infty}{\left(\frac{3}{4}\right)^n
+	g_n(x)}$ with $g(x) = g(x+2)$.\\
+	$g(x) = \begin{cases} x & \text{ if } 0 \le x < 1\\ 
+		2 - x & \text{ if } 1 \le x \le 2\\
+	\end{cases}$\\
+	$S(x) = \sum_{n = 1}^{\infty} \left(\frac{3}{4}\right)^n g_n(x)$.\\
+	$S(x)$ is continuous. $S_n(x) = \sum_{k = 1}^n \left(\frac{3}{4}\right)^k
+	g_k(x)$.\\
+	$\left|\left(\frac{3}{4}\right)^n g_n(x) \right| = \left(\frac{3}{4}\right)
+	^n$\\
+	$\{S_n(x)\}_{n \ge 1}$ is uniformly Cauchy.\\\\
+	$\epsilon > |S_n(x) - S_m(x)| = \left| \sum_{k = 0}^n \left(\frac{3}{4}
+	\right)^k g_k(x)\right|$ $(\forall n \ge m \ge N)$\\\\\\
+	Uniform limit of continuous functions are continuous.\\
+	Sums of continuous functions are continuous.\\\\\\
+	Let $f_n(x) \to f(x)$ uniformly, then lots of good things happen\\
+	Suppose $g(x) =\sum_{n = 1}{\infty}{g_n(x)}$\\
+	Then, $S_n(x) = \sum_{k = 1}{n}{g_k(x)}$.\\
+	Then, $S_n(x) \to S(x)$ uniformly.\\\\\\
+	Ex) Let $f_n(x) \to f(x)$ pointwise.\\
+	$|f_n(x) - f(x)| < \frac{1}{\sqrt{n}} < a_n \to 0$.\\
+	$(\forall \epsilon > 0 )(\exists N)(\forall n)
+	(n \ge N \implies \frac{1}{n} < \epsilon)$\\
+	This implies that $(\forall n \ge N)(\forall x \in S)
+	(|f_n(x) - f(x)| < \epsilon)$\\
+	Then, $f_n(x) \to f(x)$ uniformly on $S$ as $n \to \infty$.\\
+	If $\sup_{x \in S}|f_n(x) - f(x)| = a_n \to 0$, $\ldots$
+
+	\subsection*{Weierstrass M-Test}
+		Let $\{M_n\}_{n \ge 1}$ be a sequence of non-negative numbers such that
+		$\sum_{n = 1}^{\infty} M_n < \infty$. If $|g_n(x)| \le M_n$ $(\forall x 
+		\in S)$, then $\sum_{n = 1}^{\infty} g_n(x)$ converges uniformly on 
+		$S$.\\\\
+
+\section*{11/5}
+	\underline{Theorem}: Let $\sum_{n = 0}^{\infty} a_n x^n$ be a power series
+	with a radius of convergence, $R > 0$. Let $0 < r < R$. Then, 
+	$\sum_{n = 0}{\infty} a_n x^n$ converges uniformly on $[-r, r]$.\\
+	$\sum_{a_n}{x^n}$ and $\sum |a_n| x^n$ have the same radius of convergence,
+	$\rho = \limsup |a_n|^{\frac{1}{n}}$, so $R = \frac{1}{\rho}$.\\
+	$\sum_{n = 0}^{\infty} |a_n| r^n < \infty$.\\
+	\underline{Proof}:	Let $x \in [-r, r]$.\\
+	By the Weierstrass M-test, $|a_n x^n| \le \frac{a_nr^n}{M_n}$.\\
+	If $\sum_{n = 1}^{\infty} M_n < \infty$, then the series converges
+	uniformly.$\ldots$\\\\
+%
+	\underline{Corollary}: $f(x) = \sum_{n = 1}^{\infty} a_nx^n$ is continuous
+	on $(-R, R)$.\\
+	\underline{Example}: $\sum_{n = 0}^{\infty} x^n = \frac{1}{1- x}$\\
+	$\sum_{n = 0}^{\infty} nx^{n-1} = \frac{1}{(1-x)^2}$. Derivative of
+	above.\\
+	$\sum_{n = 0}^{\infty} (n)(n-1)x^{n-2} = \frac{1}{(1-x)^3}$\\
+	\underline{Proposition}: If the power series, $\sum_{n = 0}^{\infty}
+	a_n x^n$ has radius of convergence, $R$. Then, $\sum_{n = 1}^{\infty}
+	na_n x^{n - 1}$ and $\sum_{n = 0}^{\infty} a_n \frac{x^{n+1}}{n+1}$
+	has the same radius of convergence, $R$.\\
+	$x \sum_{n = 1}^{\infty} na_nx^n$\\
+	Then, $\rho = \limsup (n|a_n|)^{\frac{1}{n}} = \limsup n^{\frac{1}{n}}
+	|a_n|^\frac{1}{n} = \limsup |a_n|^{\frac{1}{n}}$\\
+	Now, $\lim n^{\frac{1}{n}} = \lim e$ $\ldots$\\\\
+%
+	\underline{Theorem}: Suppose that $\sum_{n = 0}^{\infty} a_n x^n$ has
+	a radius of convergence, $R > 0$. Then, $\int_0^x f(t)dt = 
+	\sum_{n = 0}^{\infty} \frac{a_n}{n+1}x^{n+1}$ for $|x| < R$\\
+	\underline{Example}: $\int_0^n{\sum_{n = 0}^{\infty}a_nt^n dt} = 
+	\sum_{n = 0}^{\infty}\int_0^n{a_nt^n dt} = \sum a_n \frac{a^{n+1}}{n+1}$
+
+\section*{11/7}
+	\underline{Theorem}: Let $f(x) = \sum_{n=0}^{\infty} a_nx^n$ has radius
+	of convergence $R > 0$.\\\\
+	\underline{Example}: Let $p = .47 = \frac{1}{x}$\\
+	$x_i = \begin{cases} 1 & \text{ if we win with probability } p = .47 \\
+	-1 & \text{ if we lose with probability } p = .47 \end{cases}$\\
+	$S_n = \sum_{i = 1}^n x_i$\\
+	Then, $S_n = n(2p - 1) + \sqrt{n}$. In this case, $S_n = -.006n + 
+	\sqrt{n}$. In other words, as $n \to \infty$, you lose money.\\
+	A Probability Equation:
+	$P(x) = \frac{1}{\sqrt{n}} \int_0^x e^{\frac{-t^2}{2}} dt$\\
+	Then, $P'(x) = \frac{1}{\sqrt{2\pi}} e^{\frac{-x^2}{2}} = \sum_{n = 0}
+	^{\infty} \frac{(-1)^n}{\sqrt{2\pi} n! 2^n} x^2n$\\
+	$P(x) = \sum_{n = 0}^{\infty} \frac{(-1)^n}{e^n n!} 
+	\frac{x^{2n+1}}{2n+1}$\\\\
+%
+	$f(x) = \sum_{n = 0}{\infty} a_n x^n$ with radius of convergence $R > 0$.\\
+	\underline{Abel's Theorem}: Let $f(x) = \sum_{n = 0}^{\infty}$ be a power
+	series with finite positive radius of convergence, $R$. If the series
+	converges at $R$ (i.e. $\sum_{n = 0}^{\infty} a_nR^n < \infty$), then
+	f(x) is continuous at $x = R$.\\
+	Also, if the series converges at $-R$, then $f(x)$ is continuous at 
+	$x =-R$\\
+	$\int_a^b f(x)g'(x) = f(b)g(b) - f(a)g(b) - \int_a^b f'(x)g(x)dx$\\
+	Let $R = 1$ and $f_n(x) = \sum_{k = 0}^n a_nx^n$.
+	then, $s_n = f_n(1) = \sum_{k = 0}^n a_1 1^k = \sum{k=0}^n a_k$\\
+	So, $\sum_{k=0}^{\infty} a_k 1^k \to f(1) = S$ because the series converges
+	at $x = 1$.\\
+	$S_n = \sum{k = 0}^n a_k$ We know that 
+	\begin{eqnarray*}
+		a_1 &=& (a_0 + a_1) - a_0 = S_1 - S_0\\
+		a_2 &=& (a_0 + a_1 + a_2) - a_0 - a_1= S_2 - S_2\\
+		&\vdots&\\
+		a_n & = & S_n - S_{n-1}
+	\end{eqnarray*}
+	\begin{eqnarray*}
+	f_n(x) &=& a_n + \sum_{k = 1}^n a_k x^k\\
+	&=& S_0 + \sum_{k = 1}^n (S_k - S_{k -1})x^k\\
+	& =&  S_0 + \sum_{k = 1}^{\infty}S_k x^k - x\sum_{k = 1}^{\infty}S_{k-1} x^{k-1} \\
+	& = & S_0 + \sum_{k = 1}^{\infty}S_k x^k - x\sum_{k = 0}^{\infty}S_{k} x^{k} \\
+	& = & S_0 + \sum_{k = 1}^{\infty}S_k x^k S_n x^k - x(\sum_{k = 0}^{\infty}S_{k} x^{k} \\
+	\end{eqnarray*}
+
+\section*{11/10}
+	\subsection*{Basic Properties of Derivatives}
+		\underline{Defintion}: Let $f(x)$ be defined in some open interval
+		around point $a$. Then, we say that $f(x)$ is differentiable at $x=a$
+		if $f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}$ exists. The limit 
+		is called the derivative of $f$ at $x = a$.\\
+		\underline{Example}: Let $f(x) = x^9$.\\
+		$f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a} = \lim_{x \to a}
+		\frac{x^9 - a^9}{x - a} = \lim_{x \to a} x^8 + x^7a + \ldots xa^7 + a^8
+		= 9a^8$\\
+		\underline{Theorem}: Let $f(x)$ and $g(x)$ be differentiable at $x = a$.\\
+		Then, 
+		\begin{enumerate}
+			\item $(cf(x))' = cf'(x)$ for any constant $c$.
+			\item $(f(x) + g(x))' = f'(x) + g'(x)$
+			\item $f(x)g(x))' = f'(x)g(x) + f(x)g'(x)$
+			\item $\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)g(x) - f(x)g'(x)}
+			{g'(x)}$ if $g(x) \not= 0$.
+		\end{enumerate}
+
+\section*{11/12}
+	\underline{Theorem}: Let $f(x)$ be differentiable at $x=a$. Then,
+	$f(x)$ is continuous at $x=a$.\\
+	\underline{Proof}: We know that $f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}
+	{x-a}$ exists. We also know that $f(x) = \left(\frac{f(x) - f(a)}{x-a}
+	\right) (x - a) + f(a)$. Then, $\lim{x \to a} \left(\frac{f(x) - f(a)}{x-a}
+	\right) (x - a) = \lim{x \to a} \left(\frac{f(x) - f(a)}{x-a}\right) 
+	\lim_{x \to a}(x - a) = f'(a) * 0 = 0$. Therefore, $\lim_{x \to a} f(x) =
+	\lim_{x \to a} \lim{x \to a} \left(\frac{f(x) - f(a)}{x-a}\right) 
+	\lim_{x \to a}(x - a) + f(a) = f(a)$.\\\\
+	\underline{Theorem(Chain Rule)}: If $f$ is differentiable at $a$ and $g$
+	is differentiable at $f(a)$, then $g(f(x))$ is also differentiable at $a$
+	and $(g \circ f)'(a) = g'(f(a)) f'(a)$.\\
+	\underline{Proof}: $(g \circ f)'(a) = \lim_{ x \to a} \frac{(g \circ f)
+	(x) - (g \circ f)(a)}{x - a} = \lim_{x \to a} \frac{g(f(x))- g(f(a))}
+	{x - a} = \lim_{x \to a} \frac{g(f(x))- g(f(a))}{f(x) - f(a)}
+	\frac{f(x) - f(a)}{x - a}$. Let $y = f(x)$. Then, the previous expression
+	is now $\lim_{x \to a} \frac{g(y)- g(f(a))}{y - f(a)}f'(a)$ $\ldots$.\\\\
+	\underline{Example}: $f(x) = exp(\sin^2(x))$. Then, $f'(x) = exp(\sin^2(x))
+	(\sin^2(x))' = exp(\sin^2(x))*2\sin(x)\cos(x)$.
+	
+\section*{11/14}
+	There exists $c \in (a,b)$ such that $\gamma = \frac{f(b) - f(a)}{b - a} =
+	f'(c)$. Threfore, $f(b) - f(a) = \gamma (b-a)$ and $f(b) - f(a) = f'(c) 
+	(b-a)$.\\
+	$\int_a^b f'(x) dx = f(b) - f(a) = \gamma(b-a)$.\\
+	Three cases:\\
+	1) $f'(x) > \gamma \forall x \in (a,b)$\\
+	2) $f'(x) < \gamma \forall x \in (a,b)$\\
+	3) $\exists x_1,x_2  \in (a,b)$ such that $f'(x_1) > \gamma$ and $f'(x_2)
+	< \gamma$\\\\
+	Case 1: If $f'(x) > \gamma \forall x \in (a,b)$, then 
+	\begin{eqnarray*}
+		\int_a^b f'(x)dx  >  \int_a^b \gamma dx = \gamma(b-a) 
+		& = & \frac{f(b)-f(a)}{b-a}(b-a)\\
+		& = & f(b) - f(a)\\
+	\end{eqnarray*}
+	Something is wrong with this.\\
+	If $g$ is continuous on $[a,b]$, then $G(x) = \int_a^b g(t)dt$ is 
+	differentiable and $G'(x) = g(x)$.\\
+	$g(x) = f'(x)$ and $\int_a^b f'(x) dx = f(b) - f(a)$. We're also
+	assuming that the derivative is continuous.\\
+	\underline{Example}: $f(x) = \begin{cases} x^n\sin(x^{-1000}) & 
+	\text{ if } x \not= 0 \\ 0 & \text{ if } x = 0 \end{cases}$\\
+	$f'(x) = 2x \sin (x^{-2008}) + x^2 \cos(x^{-2008})(-2008 x^{-2009})$\\
+	This function is not continuous on $0$.\\\\
+	\underline{Lemma}: Suppose $f(x)$ is differentiable on $(a,b)$ and $f(x)$
+	attains its maximum( or minimum) at $c \in (a,b)$.\\
+	Then, $f'(c) = 0$.\\
+	\underline{Proof}: Let us assume that $f'(c) \not= 0$.\\
+	Without loss of generality, we can assume that $f'(c) > 0$. (Otherwise, you
+	can take the negative of the function.) Then, $\lim_{x \to c} \frac{f(x)
+	- f(c)}{x -c} = f'(c) > 0$.\\
+	$(\forall \epsilon > 0)(\exists \delta))(|x - c| < \delta \Rightarrow
+	|\frac{f(x) - f(c)}{x-c} - f'(c)| < \epsilon$\\
+	$f'(c) - \epsilon < \frac{f(x) - f(c)}{x - c} < f'(c) + \epsilon$ for
+	$x$ such that $ 0 < |x - c| < \delta$.\\
+	Now, choose $\epsilon = \frac{f'(c)}{2}$\\
+	$\frac{f'(c)}{2} < \frac{f(x) - f(c)}{x - c}$.\\
+	Then, if $x > c$, we have $f(x) > f(c)$.\\
+	Then, $f(c)$ is not a maximum! CONTRADICTION!!!\\\\
+	\underline{Theorem}: (special case of the mean value theorem. Rolle's 
+	Theorem) Suppose that $f(x)$ is continuous on $[a,b]$,  is differentiable
+	on $(a,b)$, and $f(a) = f(b)$. Then, there exists $c \in (a,b)$ such that 
+	$f'(c) = 0$.\\
+	Since $f$ is continuous on $[a,b]$, it attains both its maximum and its
+	minimum on $[a,b]$.\\
+	\underline{Mean Value Theorem (again)}: Suppose that $f(x)$ is continuous
+	on $[a,b]$ and is differentiable on $(a,b)$. Then, there exists $c \in
+	(a,b)$ such that $f'(c) = \frac{f(b)-f(a)}{b-a} = \gamma$\\
+	Let $g(x) = f(x) - \gamma x$.\\
+	Then, $g(a) = g(b)$. \\
+	Then, there exists $c \in (a,b)$ such that $g'(c) = 0 = f'(c) - \gamma c$
+
+\section*{11/17}
+	\underline{Definition}: Let $f(x)$ be defined on I. We say that $f$ is 
+	increasing on I if $x_1, x_2 \in I$ and $x_1 < x_2$ implies that $f(x_1)
+	\le f(x_2)$. We say that $f$ is strictly increasing if $x_1, x_2 \in I$
+	and $x_1 < x_2$ implies that $f(x_1) < f(x_2)$.\\
+	\underline{Theorem}: Let $f$ be differentiable on an interval $(a,b)$.
+	Then, 
+	\begin{enumerate}
+		\item $f$ is strictly increasing on $(a,b)$ if $f'(x) > 0$ for all
+		$x \in (a,b)$
+		\item $f$ is strictly decreasing on $(a,b)$ if $f'(x) < 0$ $\forall x \in
+		(a,b)$.
+		\item $f$ is increasing on $(a,b)$ if $f'(x) \ge 0$ $\forall x \in (a,b)$
+		\item $f$ is decreasing on $(a,b)$ if $f'(x) \le 0$ $\forall x \in (a,b)$
+	\end{enumerate}
+	\underline{Proof}:
+	\begin{enumerate}
+		\item If $x_1 < x_2$, then $f(x_2) - f(x_1) = f'(c)(x_2 - x_1) > 0$
+	\end{enumerate}
+	\underline{Intermediate Value Theorem for Derivatives}: Let $f$ be
+	differentiable on $(a,b)$. Let $a < x_1 < x_2 < b$. Finally, let us assume
+	that $c$ is between $f'(x_1)$ and $f'(x_2)$. Then, $\exists x_0 \in 
+	(x_1, x_2)$ such that $f'(x_0) = c$\\
+	\underline{Proof}: Let $g(x) = f(x) - cx$ is continuous $[x_1, x_2] 
+	\Rightarrow g$ attains its minimum on $[x_1, x_2]$.\\
+	Consider $x_1$, $g'(x_1) = f'(x_1) - c < 0$.\\
+	Consider $x_2$, $g'(x_2) = f'(x_2) - c > 0$.\\
+	Suppose you have $f$, which is 1 to 1 on $I$.\\
+	$f$ is differentiable. Then, $f$ is strictly monotone. $f(a,b) \rightarrow
+	(f(a), f(b))$.\\
+	Can we differentiate an inverse function?\\
+	We know that $f^{-1}: J \to I$ and $f^{-1}(f(x)) = x$ $\forall x \in I$\\
+	By the chain rule, $(f^{-1})'(f(x)) * f'(x) = 1$. Then, $(f^{-1})'(f(x)) = 
+	\frac{1}{f'(x)}$
+
+\section*{11/19}
+	\underline{Theorem}: $f$ is one to one and differentiable on $I \subseteq
+	(a,b)$ and $f'$ is strictly monotone. $f:I \to y$ Also, $I$ and $y$ are
+	both open intervals.\\
+	$0 \not= f'(x_0) = \lim_{x \to x_0}\frac{f(x) - f(x_0)}{x - x_0}$\\
+	We know that $\lim_{x \to x_0}\frac{x - x_0}{f(x) - f(x_0)} = \frac{1}
+	{f'(x_0)}$\\
+	$\lim_{x \to x_0}\frac{x - x_0}{y - y_0} = \lim_{x \to x_0}\frac{f^{-1}
+	(y) - f^{-1}(y_0)}{y - y_0}$\\
+	Now, we know that $\lim_{y \to y_0}\frac{f^{-1}(y) - f^{-1}(y_0)}{y - y_0}
+	= f^{-1}(y_0)$\\
+	If $y \to y_0$, then $x \to x_0$ since $x = (f^{-1})'(y)$\\
+	If $x \to x_0$, then $y \to y_0$.\\\\
+	\underline{Theorem}: Let $f(x) = \sum_{n = 0}^{\infty}a_nx^n$ for $|x| <
+	R$, where $R > 0$.\\
+	We know that $a_0 = f(0)$, but what about $a_1$?\\
+	$a_1 = f'(0)$. Why?
+	$f'(x) = \sum_{n = 1}^{\infty} na_nx^{n-1} = a_1 + 2a_2x + 3a_3x^2 + \ldots
+	$\\
+	Let $x = 0$. Then, $f'(0) = a_1.$\\
+	What about $a_2$?\\
+	$a_2 = \frac{f^{(2)}(0)}{2!}$. In fact, $a_n = \frac{f^{(n)}(0)}{n!}$\\
+	If $f(x) = \sum_{n = 0}^{\infty} a_n x^n$, then $f(x) = 
+	\sum_{n = 0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n$\\
+	Ex) $f(x) = \begin{cases} e^{-\frac{1}{x}} & \text{ if } x > 0\\
+	0 & \text{ if } x \le 0 \end{cases}$\\
+	When is $\sum_{n = 0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n = f(x)$?\\
+	$R_n(x) = f(x) - \sum_{k = 0}^{n - 1} \frac{f^{(k)}(0)}{k!} x^k$.\\
+	\underline{Defintion}: Let $f(x)$ be defined on some interval around 0. If
+	$f$ has derivates of all orders at 0, we call $\sum_{n = 0}{\infty}\frac
+	{f^{(n)}(0)}{n!} x^n$\\
+	\underline{Taylor's Theorem}: Let $f$ be defined on $(a,b)$ where
+	$a < 0 < b$. Suppose $f$ has nth derivative on $(a,b)$. Then, $\forall
+	x \in (a,b)$, $\exists y \in (0, x)$ such that $f(x) = \sum_{k = 0}^{n - 1}
+	\frac{f^{(k)}(x)}{k} x^k + \frac{f^{(n)}(y)}{n!} x^n$\\
+	In other words, $R_n(x) = \frac{f^{(n)}(y)}{n!}x^n$\\
+
+\section*{11/21}
+	\underline{Proof of Taylor's Theorem}: Fix $x \in (a,b)$ such that $x 
+	\not= 0$. Choose $M = M(x) \in \mathbb{R}$ such that $f(x) = 
+	\sum_{k = 0}^{n - 1} \frac{f^{(k)}(x) x^k}{k!} + Mx^n$, so that
+	$M = \frac{f(x) - \sum_{k = 0}^{n-1} \frac{f^{(k)}(0)}{k!} x^k}{x^n}$\\
+	(We want to show that $M = \frac{f^{(n)}(?)}{n!})$\\
+	Consider $g(t) = \sum_{k = 0}^{n -1}\frac{f^{(k)}(0)}{k!} t^k + Mt^n - 
+	f(t)$ on $[0,x]$ (or $[x, 0]$ if $x < 0$)\\
+	Clearly, $g(x) = 0$. Also, $g(0) = f(0) - f(0) = 0$\\
+	So, $g(0) = g(x)$. Then, $\exists x_1 \in (0, x)$ such that $g^{(1)}(x_1)
+	= 0$.\\
+	$\frac{dg}{dt}(t) = \sum_{k = 1}^{n-1}\frac{f^{(k)}(0)}{(k-1)!} t^{k - 1}
+	+ nMt^{n-1} - f'(t)$\\
+	We know that $g'(x_1) = 0$ Also, $g'(0) = 0$.\\
+	Then, $g'(0) = g'(x_1)$.\\
+	Therefore, $\exists x_2 \in (0, x_1)$ such that $g"(x_2) = 0$\\
+	$g"(t) = \sum_{k = 2}^{n - 1} \frac{f^{(k)}(x)}{(k-2)!} t^{k - 2} +
+	n(n-1)Mt^{n-2} - f"(t)$\\
+	$g"(x_2) = 0$. Also, $g"(0) = 0$.\\
+	Indeed, $g"(0) = f"(0) - f"(0) = 0$\\
+	$g"(0) = g"(x_2)$. Then, $\exists x_3$ such that $g'''(x_3) = 0$\\
+	Continue on... and you get you get $\exists x_n$ such that
+	$g^{(n)}(x_n) = 0$\\
+	$g(t) = \sum_{(k = 0)}^{n-1} \frac{f^{(k)}(0)}{k!} t^k + M^nt^n - f(t)$\\
+	$g^{(n)}(t) = Mn! - f^{(n)}(t)$. $g^{(n)}(z) = 0 \Rightarrow M = 
+	\frac{f^{(n)}(z)}{n!}$\\\\
+	\underline{Theorem}: $R_n(x) = f(x) - \sum_{k = 0}^{n-1} \frac{f^{(k)}(0)}
+	{k!} x^k = \int_0^x \frac{(x-t)^{n-1}}{(n-1)!} f^{(n)}(t)dt$\\
+	\underline{Note}: 
+	\begin{eqnarray*}
+		f(x) & = & f(0) + \int_0^x f'(t)dt\\
+		& =& f(0) + \int_0^x -(x-t)' f'(t)dt 
+	\end{eqnarray*}
+	Using integration by parts, let $u(t) = (x-t)$ and $v(t) = f'(t)$\\
+	$\int_0^x -u'vdt = \int_0^x uv'dt - [uv]_0^x$\\
+	Then,
+	\begin{eqnarray*}
+		& = & f(0) + \int_0^x (x-t)f"(t)dt - [(x-t)f'(t)]_0^x\\
+		& = & f(0) + \int_0^x (x-t)f"(t)dt - f'(0)x\\
+		& = & f(0) + f'(0)x + \int_0^x (x-t)f"(t) dt
+	\end{eqnarray*}
+
+	\section*{11/24}
+	\subsection*{Metric Spaces}
+		\underline{Definition}: Let $S$ be a set and $d: S X S \to \mathbb{R}$.
+		The function $d$ is called a metric on $S$ if it satisfies the following:
+		\begin{enumerate}
+			\item $d(x,x) = 0 \forall x \in S$
+			\item $d(x,y) > 0 \forall x,y \in S$ such that $x \not= y$
+			\item $d(x,y) = d(y, x) \forall x,y \in S$
+			\item $d(x,z) \le d(x,y) + d(y,z) \forall x,y,z \in S$
+		\end{enumerate}
+		\underline{Definition}: $(S,d)$ is called a metric space.\\
+		\underline{Example}: 
+		\begin{enumerate}
+		 	\item Let $S$ be an arbitrary set $d(x,y) = \begin{cases}
+				0 & \text{ if } x = y \\ 1 & \text{ if } x \not= y\end{cases}$
+			\item Let $S = \mathbb{R}^n$. Then, $x = (x_1, \ldots, x_n)$, $y = 
+				(y_1, \ldots, y_n)$.
+		\end{enumerate}
+		Typically, $d(x,y) = \sqrt{\sum_{k=1}^n (x_k - y_k)^2}$\\
+		\underline{Special cases}: $n = 1$ and $S = \mathbb{R}$\\
+		$d(x,y) = \sqrt{(x-y)^2} = |x-y|$ \\
+		If $n = 2$, $d(x,y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2}$\\
+		Since $d(x,z) \le d(x,y) + d(y,z)$.\\
+		$\sqrt{\sum_{i = 1}^n (x_i - z_i)^2} \le \sqrt{\sum_{i = 1}^n 
+		(x_i - y_i)^2} + \sqrt{\sum_{i = 1}^n (y_i - z_i)^2}$\\
+	\underline{Open Sets}: Suppose we have a metric space, $(S,d)$ and 
+		$E \subseteq S$. Then, $x \in E$ is called an interior point to $E$ if
+		$\exists \epsilon$ such that $\forall y$ satisfying $d(x,y) < \epsilon$,
+		we know that $y \in E$.\\
+		Let $E^o$ be the collection of all interior points of $E$.\\
+	\underline{Definition}: $E \subseteq S$ is called an open set if $E^o = 
+		E$. In other words, $E$ is an open set if any point of $E$ is its 
+		interior point (i.e. ($\forall x \in E$)($\exists \epsilon > 0$)($d(x,y)
+		< \epsilon \implies y \in E$))\\
+	\underline{Theorem}: 
+	\begin{enumerate}
+		\item $S$ is an open itself, $\emptyset$ is open
+		\item If $\{ S_{\alpha}: \alpha \in \mathcal{A}\}$ is a collection of
+			open set, then $\bigcup_{\alpha \in \mathcal{A}}$ is also open.
+		\item If $\{ E_n, 1 \le n \le N \}$ is a finite collection of open sets,
+			then $\bigcap_{n = 1}^N E_n$ is open.
+	\end{enumerate}
+	\underline{Example}: $E_n = (-\frac{1}{n}, \frac{1}{n})$. $S = 
+		\mathbb{R}$\\
+		$\bigcap_{n=1}^{\infty} E_n = \{ 0 \}$ is not open!\\
+	\underline{Example}: $\bigcap_{n = 1}^N E_n = \bigcap_{n = 1}^{N} 
+	(-\frac{1}{n}, \frac{1}{n}) = (-\frac{1}{N}, \frac{1}{N})$
+
+\section*{11/26}
+	\underline{Definition}: A set $E \subseteq S$ is closed if its complement
+	$S \ E$ is open.\\
+	\underline{Definition}: Let $E$ be an arbitrary subset of $S$. The closure
+	$\bar{E}$ of E is the intersection of all closed sets containing $E$.\\
+	$E^o \subseteq E \subseteq \bar{E}$ where $E^o$ is the interior of $E$.\\
+	\underline{Proposition}:
+	\begin{enumerate}
+		\item $\emptyset$ is a closed set. $S$ is a closed set
+		\item Intersection of any number of closed sets is closed
+		\item Union of a finite number of closed sets is closed
+	\end{enumerate}
+	\underline{Note}: $\bigcup_{\alpha \in \mathcal{A}} \bigcup_{\alpha}$ is 
+	open if each $U_{\alpha}$ is open.\\
+	What about closed sets?\\
+	$E_{\alpha} = S \ \bigcup_{\alpha}$.\\
+	$\bigcap_{\alpha \in \mathcal{A}} \ldots$\\
+	\underline{Proposition}: Let $E$ be a subset of $S$. Then,
+	\begin{enumerate}
+		\item $E$ is closed iff $\bar{E} = E$
+		\item The set $E$ is closed iff it contains the limit of any converging
+		sequence in $E$.\\
+		\item An element belongs to $\bar{E}$ iff it is the limit of a converging 
+		sequence on $E$\\
+		\item A Point in the boundary of $E$ (recall Boundary(E) = $\ldots$
+	\end{enumerate}
+	\subsection*{The real material}
+		Let $(S,d)$ and $(S*, d*)$ be metric spaces. $f: S \to S^*$ is continuous
+		at $s_o in S$ if $\forall \epsilon > 0$ $\exists \delta(\epsilon, s_o)$
+		such that if $|s - s_o| < \delta$, then $|f(s) - f(s_o)| < \epsilon$.\\
+		\underline{Theorem}: Let $(S,d)$ and $(S*,d*)$ be metric spaces. A function
+		$f: S \to S^*$ is continuous iff for any open subset $U$ of $S^*$, its
+		preimage, $f^{-1}(U)$ is also open.\\
+		Then, $f^{-1}(U) = \{ x \in S | f(x) \in U \}$\\
+		\underline{Proof}: $\Rightarrow$\\
+			Suppose $f: S \to S^*$ is continuous. We need to prove that if $U 
+			\subseteq	S^*$ is open, then $f'(U)$ is open on $S$\\
+
+\section*{12/1}
+	\underline{Lemma}: Let $V = B_{\epsilon}(y)$ is an open set. Let $x \in 
+	B_{\epsilon}(y)$. We have to show that $\exists \epsilon > 0$ such that
+	$B_{\epsilon}(x) \subseteq V = B_{\epsilon}(y)$. Choose $\tilde{\epsilon} <
+	\epsilon - d(y,x)$ We have to show that $d(x,y) \ldots$\\
+	Consider the preimage of $f'(B_{\epsilon}(f(s)))$. Since $f'(B_{\epsilon}(
+	f(s)))$ is open, $\exists \delta > 0$ such that $B{\epsilon}(s) \subset 
+	f'(B_{\epsilon}(f(s)))$.\\
+	\underline{Definition}: Let $(S,d)$ be a metric space and $E \subseteq S$.\\
+	Let $\mathcal{U} = \{ U_{\alpha}\}_{\alpha \in \mathcal{A}}$ be a collection
+	of open sets such that $E \subseteq \bigcup_{\alpha \in \mathcal{A}}
+	U_{\alpha}$. then, we say that $\mathcal{U} = \{ U_{\alpha} | \alpha \in 
+	\mathcal{A} \}$ is called an cover of $E$.\\
+	\underline{Definition}: $E$ is compact if any open cover of $E$ contians 
+	finite subcover.\\
+	$f\{ U_1, \ldots, U_m \} \in \mathcal{U}$ such that $E \subseteq 
+	\bigcup_{i = 1}^m U_i$\\
+	\underline{Theorem}: (Heine-Borel) Let $(\mathbb{R}, |x - y|)$ be the metric
+	space. A set $E \subseteq \mathbb{R}$ is compact iff it is bounded and 
+	closed.\\
+	Let $f : [a, b] \to \mathbb{R}$. This is closed because $R \ [a,b] = 
+	(-\infty, a) \bigcup (b, \infty)$ is open. \\
+	Let $f: [a,b] \to \mathbb{R}$ be continuous. Then,
+	\begin{enumerate}
+		\item $f$ is bounded (i.e. $\exists M$ such that $|f(x)| \le M$ $\forall
+		x \in [a, b]$)
+		\item $f$ attains its maximum and minimum on $[a,b]$
+		\item $f$ is uniformly continuous $[a,b]$. 
+	\end{enumerate}
+	\underline{Theorem}: Consider metric spaces $(S,d)$ and $(S^*, d^*)$ and
+	a continuous function $f: S \to s^*$. Let $E$ be a compact subset of $S$.
+	Then, 
+	\begin{enumerate}
+		\item $f(E) = \{ y \in S^*$ such that $\exists x \in E$ such that $y = 
+		f(x)$ is compact in $S^*$
+		\item $f$ is uniformly continuous on $E$
+	\end{enumerate}
+
+\end{document}
